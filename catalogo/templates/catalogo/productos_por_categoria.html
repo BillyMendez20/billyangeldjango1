@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Productos por Categoría</h1>
+  {% for categoria in categorias %}
+    <h2>{{ categoria.nombre }}</h2>
+    {% with productos=categoria.producto_set.all %}
+      {% if productos %}
+          <ul>
+          {% for producto in productos %}
+              <li>{{ producto.descripcion }} - {{ producto.precio }} - {{ producto.cantidad }}</li>
+          {% endfor %}
+          </ul>
+      {% else %}
+          <p>No hay productos en esta categoría.</p>
+      {% endif %}
+    {% endwith %}
+  {% endfor %}
+{% endblock %}
